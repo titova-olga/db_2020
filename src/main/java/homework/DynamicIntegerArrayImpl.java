@@ -1,37 +1,34 @@
 package homework;
 
-/**
- * @author Evgeny Borisov
- */
 public class DynamicIntegerArrayImpl implements DynamicIntegerArray {
 
-    private int[] nums = new int[0];
+    private final int MINIMUM_SIZE = 5;
+    private final double SIZE_MULTIPLIER = 1.5;
+
+    private int[] array = new int[MINIMUM_SIZE];
+    private int curSize;
 
     @Override
     public int get(int index) {
+        if (index < 0 || index > curSize - 1)
+            throw new IllegalArgumentException("Index out of bounds!");
 
-        return nums[index];
+        return array[index];
     }
 
     @Override
     public void add(int value) {
-        int[] ints = new int[nums.length + 1];
-/*
-        for (int i = 0; i < nums.length; i++) {
-            ints[i] = nums[i];
+        if (curSize == array.length) {
+            int newSize = (int) (curSize * SIZE_MULTIPLIER);
+            int[] tmpArray = new int[newSize];
+            System.arraycopy(array, 0, tmpArray, 0, array.length);
+            array = tmpArray;
         }
-        ints[nums.length] = value;
-
-        nums = ints;*/
-        System.arraycopy(nums,0,ints,0,nums.length);
-        ints[nums.length]=value;
-        nums = ints;
-
-
+        array[curSize++] = value;
     }
 
     @Override
     public int size() {
-        return nums.length;
+        return curSize;
     }
 }
