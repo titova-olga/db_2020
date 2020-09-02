@@ -24,7 +24,7 @@ public abstract class Hero {
 
     @Override
     public String toString() {
-        return "Hero " + name + '\'' +
+        return "Hero " + this.getClass().getName() + " " + name +
                 ", has power = " + power +
                 ", hp = " + hp;
     }
