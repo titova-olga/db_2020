@@ -1,6 +1,6 @@
 package homework.radio_alarm;
 
-public class RadioImpl implements Radio {
+public class DefaultRadioImpl implements Radio {
     @Override
     public void a() {
 

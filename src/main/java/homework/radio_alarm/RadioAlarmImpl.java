@@ -2,11 +2,27 @@ package homework.radio_alarm;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public class RadioAlarmImpl implements RadioAlarm {
 
-    private final Radio radio;
-    private final Alarm alarm;
+    private Radio radio = new DefaultRadioImpl();
+    private Alarm alarm = new DefaultAlarmImpl();
+
+    public RadioAlarmImpl() {
+
+    }
+
+    public RadioAlarmImpl(Radio radio, Alarm alarm) {
+        this.radio = radio;
+        this.alarm = alarm;
+    }
+
+    public RadioAlarmImpl(Alarm alarm) {
+        this.alarm = alarm;
+    }
+
+    public RadioAlarmImpl(Radio radio) {
+        this.radio = radio;
+    }
 
     @Override
     public void c() {
