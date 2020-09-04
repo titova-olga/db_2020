@@ -18,7 +18,7 @@ public class MailMockProducer {
     @SneakyThrows
     public void sendMailsForever()  {
         while (true) {
-            int mailType = RandomUtil.getIntBetween(0, 4) + 1;
+            MailType mailType = MailType.getRandomMailType();
             MailInfo mailInfo = MailInfo.builder()
                     .email(dataFactory.getEmailAddress())
                     .mailType(mailType)
