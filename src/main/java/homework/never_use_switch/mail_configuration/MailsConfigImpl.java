@@ -1,5 +1,6 @@
-package homework.never_use_switch;
+package homework.never_use_switch.mail_configuration;
 
+import homework.never_use_switch.mail_senders.*;
 import lombok.Getter;
 
 import java.util.Map;

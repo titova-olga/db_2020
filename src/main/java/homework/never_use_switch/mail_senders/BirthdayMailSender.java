@@ -1,4 +1,6 @@
-package homework.never_use_switch;
+package homework.never_use_switch.mail_senders;
+
+import homework.never_use_switch.mail_configuration.MailInfo;
 
 public class BirthdayMailSender implements MailSender {
     @Override

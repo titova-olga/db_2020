@@ -1,5 +1,8 @@
 package homework.never_use_switch;
 
+import homework.never_use_switch.mail_configuration.MailInfo;
+import homework.never_use_switch.mail_configuration.MailsConfig;
+import homework.never_use_switch.mail_senders.MailSender;
 import lombok.RequiredArgsConstructor;
 
 /**

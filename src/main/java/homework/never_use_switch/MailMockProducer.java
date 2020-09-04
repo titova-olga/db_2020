@@ -1,7 +1,9 @@
 package homework.never_use_switch;
 
 import com.github.javafaker.Faker;
-import heroes.RandomUtil;
+import homework.never_use_switch.mail_configuration.MailInfo;
+import homework.never_use_switch.mail_configuration.MailType;
+import homework.never_use_switch.mail_configuration.MailsConfigImpl;
 import lombok.SneakyThrows;
 import org.fluttercode.datafactory.impl.DataFactory;
 
