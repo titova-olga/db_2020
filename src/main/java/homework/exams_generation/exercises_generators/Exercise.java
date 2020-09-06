@@ -1,5 +1,6 @@
-package homework.exams_generation;
+package homework.exams_generation.exercises_generators;
 
+import homework.exams_generation.operators.Operator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +19,8 @@ public class Exercise {
     private double answer;
     private Operator operator;
 
-
+    @Override
+    public String toString() {
+        return a + " " + operator.getSign() + " " + b + " = " + answer + "\n";
+    }
 }
