@@ -1,14 +1,22 @@
-package my_spring.cleaners;
+package my_spring;
 
 import my_spring.annotations.InjectRandomInt;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author Evgeny Borisov
  */
 public class CleanerImpl implements Cleaner {
 
-    @InjectRandomInt(min=3,max=10)
-    private int repeat = 1;
+
+    @InjectRandomInt(min = 3, max = 10)
+    private int repeat;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("repeat = " + repeat);
+    }
 
     @Override
     public void clean() {
@@ -17,3 +25,15 @@ public class CleanerImpl implements Cleaner {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

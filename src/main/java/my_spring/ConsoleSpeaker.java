@@ -1,4 +1,4 @@
-package my_spring.speakers;
+package my_spring;
 
 import my_spring.annotations.Singleton;
 

@@ -1,25 +1,35 @@
 package my_spring;
 
-import my_spring.cleaners.Cleaner;
-import my_spring.irobot_configuration.BaseConfig;
-import my_spring.speakers.Speaker;
+import my_spring.annotations.InjectByType;
+import my_spring.annotations.InjectRandomInt;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author Evgeny Borisov
  */
 public class IRobot {
 
-    public IRobot(BaseConfig config) {
-        speaker = ObjectFactory.getInstance().createObject(Speaker.class, config);
-        cleaner = ObjectFactory.getInstance().createObject(Cleaner.class, config);
-    }
+    @InjectRandomInt(max = 10,min = 1)
+    private int version;
 
-    private Speaker speaker;
+    @InjectByType
+    private Speaker speaker1;
+    @InjectByType
+    private Speaker speaker2;
+    @InjectByType
     private Cleaner cleaner;
 
+
+    @PostConstruct
+    public void init() {
+        System.out.println("version = " + version);
+
+    }
+
     public void cleanRoom() {
-        speaker.speak("Я начал уборку");
+        speaker1.speak("Я начал уборку");
         cleaner.clean();
-        speaker.speak("Я закончил уборку");
+        speaker2.speak("Я закончил уборку");
     }
 }

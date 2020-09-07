@@ -19,7 +19,7 @@ public class ColorFrame extends JFrame {
         setVisible(true);
     }
 
-    private void initContent(final int[] counter) {
+    private void initContent(int[] counter) {
         JButton button = new JButton("click me");
 
         button.addActionListener(e -> {
@@ -31,7 +31,6 @@ public class ColorFrame extends JFrame {
 
         this.getContentPane().add(button, BorderLayout.SOUTH);
     }
-
 
     public static void main(String[] args) {
         new ColorFrame(2);

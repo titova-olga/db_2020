@@ -1,4 +1,4 @@
-package my_spring.speakers;
+package my_spring;
 
 /**
  * @author Evgeny Borisov
