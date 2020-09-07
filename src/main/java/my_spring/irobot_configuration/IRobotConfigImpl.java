@@ -13,7 +13,7 @@ import java.util.Map;
 public class IRobotConfigImpl implements BaseConfig {
 
     private final Map<Class, Class> robotConfig =
-            Map.of(Speaker.class, CapsLockConsoleSpeaker.class,
+            Map.of(//Speaker.class, CapsLockConsoleSpeaker.class,
                     Cleaner.class, CleanerImpl.class);
 
     @SneakyThrows
