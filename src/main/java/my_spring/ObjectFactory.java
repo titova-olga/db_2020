@@ -17,6 +17,9 @@ public class ObjectFactory {
 
     private static ObjectFactory objectFactory = new ObjectFactory();
 
+    private Reflections scanner = new Reflections("my_spring");
+
+
     private ObjectFactory() {
     }
 
@@ -31,7 +34,6 @@ public class ObjectFactory {
         if (type.isInterface()) {
             clazz = objectConfig.getImpl(type);
             if (clazz == null) {
-                Reflections scanner = new Reflections("my_spring/" + type.getSimpleName().toLowerCase() + "s");
                 Set<Class<? extends T>> classes = scanner.getSubTypesOf(type);
                 if (classes.size() == 0) {
                     throw new IllegalArgumentException();
