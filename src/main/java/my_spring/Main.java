@@ -1,11 +1,13 @@
 package my_spring;
 
+import my_spring.irobot_configuration.IRobotConfigImpl;
+
 /**
  * @author Evgeny Borisov
  */
 public class Main {
     public static void main(String[] args) {
-        IRobot iRobot = new IRobot();
+        IRobot iRobot = new IRobot(new IRobotConfigImpl());
         iRobot.cleanRoom();
     }
 }

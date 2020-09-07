@@ -1,7 +1,6 @@
-package my_spring;
+package my_spring.speakers;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import my_spring.annotations.Singleton;
 
 /**
  * @author Evgeny Borisov

@@ -1,15 +1,12 @@
 package my_spring;
 
-import java.util.Map;
+import lombok.SneakyThrows;
+import my_spring.irobot_configuration.BaseConfig;
 
 /**
  * @author Evgeny Borisov
  */
 public class ObjectFactory {
-
-
-//    private Map<Class, Class> ifc2ImplClass = Map.of(Speaker.class, ConsoleSpeaker.class)
-
 
     private static ObjectFactory objectFactory = new ObjectFactory();
 
@@ -20,9 +17,14 @@ public class ObjectFactory {
         return objectFactory;
     }
 
-    public Object createObject(Class type) {
-        //todo finish this
-        // if type is concrete class, just create and return it's instance
-        //if type is and interface, you should find appropriative impl.
+    @SneakyThrows
+    public <T> T createObject(Class<T> type, BaseConfig objectConfig) {
+
+        if (type.isInterface()) {
+            return objectConfig.getImpl(type).getDeclaredConstructor().newInstance();
+        }
+        else {
+            return type.getDeclaredConstructor().newInstance();
+        }
     }
 }
