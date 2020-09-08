@@ -8,8 +8,9 @@ public class Context {
     private static final Context context = new Context();
     private final ObjectFactory objectFactory = ObjectFactory.getInstance();
 
-    public void configure(Config config) {
+    public Context configure(Config config) {
         objectFactory.configure(config);
+        return context;
     }
 
     private Context() {

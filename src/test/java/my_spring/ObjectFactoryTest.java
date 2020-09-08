@@ -44,6 +44,18 @@ public class ObjectFactoryTest {
         SuperHero superHero = objectFactory.createObject(SuperHero.class);
         Assert.assertEquals(Batman.class, superHero.getClass());
     }
+
+    @Test
+    public void testThatSingletonCreatedOnlyOnce() {
+        Config config = Mockito.mock(Config.class);
+        Mockito.when(config.getPackageToScan()).then(invocation -> "my_spring");
+
+        Context context = Context.getInstance().configure(config);
+
+        Soldier soldier1 = context.createObject(Soldier.class);
+        Soldier soldier2 = context.createObject(Soldier.class);
+        Assert.assertEquals(soldier1,soldier2);
+    }
 }
 
 

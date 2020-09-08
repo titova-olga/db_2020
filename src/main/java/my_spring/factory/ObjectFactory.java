@@ -42,6 +42,9 @@ public class ObjectFactory {
     @SneakyThrows
     public <T> T createObject(Class<T> type) {
         Class<? extends T> implClass = resolveImpl(type);
+        if (implClass.isAnnotationPresent(Singleton.class) && singletons.containsKey(type)) {
+            return (T) singletons.get(type);
+        }
         T t = create(implClass);
         configure(t);
         invokeInitMethod(implClass, t);
@@ -68,14 +71,6 @@ public class ObjectFactory {
         }
     }
 
-    @SneakyThrows
-    private <T> T getSingleton(Class<T> type) {
-        if (!singletons.containsKey(type)) {
-            singletons.put(type, type.getDeclaredConstructor().newInstance());
-        }
-        return (T) singletons.get(type);
-    }
-
     private <T> void invokeInitMethod(Class<? extends T> implClass, T t) throws IllegalAccessException, InvocationTargetException {
         Set<Method> methods = ReflectionUtils.getAllMethods(implClass);
         for (Method method : methods) {
@@ -90,10 +85,17 @@ public class ObjectFactory {
     }
 
     private <T> T create(Class<? extends T> implClass) throws InstantiationException, IllegalAccessException, java.lang.reflect.InvocationTargetException, NoSuchMethodException {
-        if (implClass.isAnnotationPresent(Singleton.class)) {
-            return (T) getSingleton(implClass);
+        T obj = implClass.getDeclaredConstructor().newInstance();
+
+        if(implClass.isAnnotationPresent(Singleton.class)) {
+            saveSingletonInCache(implClass, obj);
         }
-        return implClass.getDeclaredConstructor().newInstance();
+
+        return obj;
+    }
+
+    private <T> void saveSingletonInCache(Class<? extends T> implClass, T obj) {
+        singletons.put(implClass, obj);
     }
 
     private <T> Class<? extends T> resolveImpl(Class<T> type) {

@@ -17,8 +17,7 @@ public class Main {
                 Speaker.class, ConsoleSpeaker.class
                 );
 
-        Context context = Context.getInstance();
-        context.configure(new JavaConfig(map,"my_spring"));
+        Context context = Context.getInstance().configure(new JavaConfig(map,"my_spring"));
 
         IRobot iRobot = context.createObject(IRobot.class);
         iRobot.cleanRoom();
