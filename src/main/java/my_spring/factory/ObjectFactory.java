@@ -63,10 +63,10 @@ public class ObjectFactory {
 
     @SneakyThrows
     private void addSingletons() {
-        Set<Class<? extends Object>> classes = scanner.getSubTypesOf(Object.class);
-        for (Class<? extends Object> aClass : classes) {
+        Set<Class<?>> classes = scanner.getSubTypesOf(Object.class);
+        for (Class<?> aClass : classes) {
             if (aClass.isAnnotationPresent(Singleton.class)) {
-                singletons.put(aClass, createObject(aClass));
+                saveSingletonInCache(aClass, createObject(aClass));
             }
         }
     }
