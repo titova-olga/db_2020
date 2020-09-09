@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author Evgeny Borisov
  */
 @RequiredArgsConstructor
-@Component
+//@Component
 @Scope
 @Lazy
 public class IntegerFactory implements FactoryBean<Integer> {

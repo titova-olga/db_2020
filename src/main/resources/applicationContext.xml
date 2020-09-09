@@ -8,16 +8,6 @@
 
     <context:property-placeholder location="classpath:application.properties"/>
 
-
-    <bean id="integerFactory" class="real_spring.quoters.IntegerFactory">
-        <constructor-arg index="0" value="12"/>
-        <constructor-arg index="1" value="120"/>
-    </bean>
-
-    <bean id="anotherQuote" class="java.lang.String">
-        <constructor-arg value="trust me!"/>
-    </bean>
-
 </beans>
 
 

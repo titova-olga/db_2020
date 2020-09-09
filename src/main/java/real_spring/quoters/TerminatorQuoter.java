@@ -1,11 +1,13 @@
 package real_spring.quoters;
 
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,12 +17,11 @@ import java.util.List;
 @Component
 public class TerminatorQuoter implements Quoter {
 
-    @Value("${terminator}")
     private List<String> messages;
 
-
-    public void setMessages(List<String> messages) {
-        this.messages = messages;
+    @Autowired
+    public void setWords(@Value("${terminator}") String[] words) {
+        this.messages = Arrays.asList(words);
     }
 
     @Override
