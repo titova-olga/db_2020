@@ -9,20 +9,22 @@ import org.springframework.stereotype.Service;
 public class DaoService {
 
     @Autowired
-    @DaoAnnotation(daoType = DaoType.ORACLE)
-    private Dao oracleDao;
+    //@DaoAnnotation(daoType = DaoType.ORACLE)
+    @Oracle
+    private Dao oDao;
 
     @Autowired
-    @DaoAnnotation(daoType = DaoType.DERBY)
-    private Dao derbyDao;
+    //@DaoAnnotation(daoType = DaoType.DERBY)
+    @Derby
+    private Dao dDao;
 
     @Scheduled(fixedDelay = 1000)
     public void doWork() {
-        oracleDao.save();
+        oDao.save();
     }
 
     @Scheduled(fixedDelay = 3000)
     public void doBackup() {
-        derbyDao.save();
+        dDao.save();
     }
 }
