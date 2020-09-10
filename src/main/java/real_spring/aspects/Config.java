@@ -9,6 +9,6 @@ import org.springframework.context.annotation.*;
 public class Config {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-        context.getBean(Dao.class).save();
+        context.getBean(ServiceA.class).save();
     }
 }
