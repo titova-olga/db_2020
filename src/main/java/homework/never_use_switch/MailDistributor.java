@@ -1,13 +1,11 @@
 package homework.never_use_switch;
 
 import homework.never_use_switch.mail_configuration.MailInfo;
-import homework.never_use_switch.mail_configuration.MailsConfig;
+import homework.never_use_switch.mail_configuration.MailType;
 import homework.never_use_switch.mail_senders.MailSender;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import org.reflections.Reflections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +18,15 @@ import java.util.Set;
 @Component
 public class MailDistributor {
 
+    private Map<MailType, MailSender> mailsConfig = new HashMap<>();
+
     @Autowired
-    private MailsConfig mailsConfig;
+    public MailDistributor(Set<MailSender> senders) {
+        senders.stream().forEach(mailSender -> mailsConfig.put(mailSender.getMailType(), mailSender));
+    }
 
     public void sendMailInfo(MailInfo mailInfo) {
-        MailSender mailSender = mailsConfig.getMailsSenders().get(mailInfo.getMailType());
+        MailSender mailSender = mailsConfig.get(mailInfo.getMailType());
         mailSender.sendMail(mailInfo);
     }
 }
