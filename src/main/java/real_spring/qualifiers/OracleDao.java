@@ -3,8 +3,7 @@ package real_spring.qualifiers;
 import org.springframework.stereotype.Component;
 
 @Component
-@Oracle
-//@DaoAnnotation(daoType = DaoType.ORACLE)
+@DaoAnnotation(daoType = DaoType.ORACLE)
 public class OracleDao implements Dao {
     @Override
     public void save() {

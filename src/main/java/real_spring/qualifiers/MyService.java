@@ -6,16 +6,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DaoService {
+public class MyService {
 
     @Autowired
-    //@DaoAnnotation(daoType = DaoType.ORACLE)
-    @Oracle
+    @DaoAnnotation(daoType = DaoType.ORACLE)
     private Dao oDao;
 
     @Autowired
-    //@DaoAnnotation(daoType = DaoType.DERBY)
-    @Derby
+    @DaoAnnotation(daoType = DaoType.DERBY)
     private Dao dDao;
 
     @Scheduled(fixedDelay = 1000)
